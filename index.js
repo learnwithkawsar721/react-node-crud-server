@@ -22,7 +22,9 @@ mongoose
   )
   .then(() => console.log("Database Connected SuccessFully!!"))
   .catch((err) => console.log(err));
-
+app.get("/", (req, res) => {
+  res.status(200).json("hello world");
+});
 // SERVER SETUP
 app.listen(port, () => {
   console.log(`Server is running port:${port}`);
