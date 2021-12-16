@@ -4,12 +4,22 @@ const Todo = require("../modles/todoModle");
 // GET TODO CONTROLLER
 const getTodo = async (req, res) => {
   try {
-    const result = await Todo.find();
+    const result = await Todo.find().sort({ _id: -1 });
     res.status(200).json({ message: "get Successfully!!", data: result });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
+// GET SINGLE TODO
+const getSingle = async(req,res)=>{
+  try {
+    const filter = { _id: req.params.id };
+    const result = await Todo.findOne(filter);
+    res.status(200).json({ message: "Successfully!!", data: result });
+  } catch (error) {
+    res.status(500).json(createError(500, "server Site Error"));
+  }
+}
 // ADD TODO
 const addTodo = async (req, res) => {
   try {
@@ -46,4 +56,5 @@ module.exports = {
   addTodo,
   deleteTodo,
   updateTodo,
+  getSingle
 };

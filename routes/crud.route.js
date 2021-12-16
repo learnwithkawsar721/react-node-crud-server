@@ -4,11 +4,15 @@ const {
   addTodo,
   deleteTodo,
   updateTodo,
+  getSingle,
 } = require("../controllers/todoController");
 const router = express.Router();
 
 // GET ROUTE
 router.get("/", getTodo);
+
+// GET TODO BY ID
+router.get('/:id',getSingle);
 
 // POST ROUTE
 router.post("/add", addTodo);
